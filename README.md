@@ -1,8 +1,8 @@
 # aegisub-deadstuff
 Some tools and dictionaries for Aegisub
 
-#### scripts/autobreakline2.lua
-Insert breaklines into text based in width of the lines
+#### scripts/autolinebreak.lua
+Insert line break into text based in width of the lines
 
 #### scripts/postomargin.lua
 Use this script if you need convert \pos(x,y) tags to margins
