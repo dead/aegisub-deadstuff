@@ -257,9 +257,10 @@ function main(subtitles, selected_lines, active_line)
     local last_y = form[#form].y
     for _, sname in pairs(styles_ord) do
         if used_styles[sname] then
-            local checked = true
-            if sname:lower():find("type") then
-                checked = false
+            local checked = false
+            
+            if styles[sname] and styles[sname].fontname == "Trebuchet MS" and styles[sname].fontsize == 22 then
+                checked = true
             end
             
             table.insert(form, {class="checkbox", x = 0, y = last_y+1, height = 1, width = 1, name=sname.."_checkbox", label=sname, value=checked})
