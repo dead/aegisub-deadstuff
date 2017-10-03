@@ -1,6 +1,6 @@
 include("utils.lua")
 
-script_name = "Automatic Lines Breaks"
+script_name = "CR/Automatic Lines Breaks"
 script_description = "Automatically inserts hard line breaks."
 script_author = "xdead"
 script_version = "4.0"
@@ -74,6 +74,14 @@ function words_str(words, include_tags)
     end
     
     return table.concat(words, "")
+end
+
+function trim_end(s)
+  return s:gsub("%s+$", "")
+end
+
+function trim_start(s)
+  return s:gsub("^%s+", "")
 end
 
 function autobreak(style, text)
@@ -167,7 +175,7 @@ function autobreak(style, text)
         end
     end
     
-    return words_str(t_line, true) .. "\\N" .. words_str(b_line, true)
+    return trim_end(words_str(t_line, true)) .. "\\N" .. trim_start(words_str(b_line, true))
 end
 
 function main(subtitles, selected_lines, active_line)
@@ -281,7 +289,7 @@ function main(subtitles, selected_lines, active_line)
             local text = line.text
             
             if conf["replace_linebreaks"] then
-                text = text:gsub(" \\N", " "):gsub("\\N ", " "):gsub("\\N", " ")
+                text = text:gsub(" \\N ", " "):gsub(" \\N", " "):gsub("\\N ", " "):gsub("\\N", " ")
             end
             
             if not text:find("\\N") then
